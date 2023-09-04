@@ -4,8 +4,8 @@ import video from "./asset/video-1.mp4";
 const App = () => {
   const videoUrl = video;
   const videoChapters = [
-    { title: "What is computer?", start: 5.0, end: 6.0 },
-    { title: "Why we need to use computer?", start: 0.4, end: 0.7 },
+    { title: "Introduction to Computing", start: 0.0, end: 2.0 },
+    { title: "What is a computer?", start: 2.0, end: 5.0 },
   ];
 
   return (
@@ -13,6 +13,6 @@ const App = () => {
       <BifurcationPlayer url={videoUrl} chapters={videoChapters} />
     </div>
   );
-}
+};
 
 export default App;
