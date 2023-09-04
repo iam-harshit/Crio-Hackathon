@@ -36,19 +36,29 @@ const BifurcationPlayer = ({ url, chapters }) => {
             {playing ? "||" : "|>"}
           </button>
           <div className="progress-bar-container">
-            <div
-              className="played-progress"
-              style={{ width: `${played * 100}%` }}
-            ></div>
-            {chapters.map((chapter, index) => (
-              <div
-                key={index}
-                className="chapter-marker"
-                style={{ left: `${chapter.start * 100}%` }}
-                onClick={() => seekToChapter(chapter.start)}
-                title={chapter.title}
-              ></div>
-            ))}
+            {chapters.map((chapter, index) => {
+              let widthPercentage =
+                (index !== chapters.length - 1
+                  ? chapters[index + 1].start - chapter.start
+                  : 1 - chapter.start) * 100;
+              return (
+                <div
+                  key={index}
+                  className="played-progress"
+                  style={{ width: `${widthPercentage}%` }}
+                  onClick={() => seekToChapter(chapter.start)}
+                  title={chapter.title}
+                >
+                  {" "}
+                  <div
+                    className="played-progress"
+                    style={{
+                      width: `${Math.min(played, chapter.start) * 100}%`,
+                    }}
+                  ></div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
