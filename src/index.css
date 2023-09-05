@@ -79,8 +79,8 @@ code {
   
   .chaptered-player-container {
     position: relative;
-    width: 100vh;
-    height: 56vh;
+    width: 100%;
+    min-height: 0;
     border-radius: 15px;
     overflow: hidden;
   }

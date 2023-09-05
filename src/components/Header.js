@@ -27,18 +27,11 @@ const Header = () => {
 
       <div className="flex h-5 items-center">
         <Link to="/" className="flex h-7 items-center">
-          {/* <img
-            className="h-full ml-5 w-[100px] dark:md:block"
-            src={crioLogoMobile}
-            alt="Crio.Do"
-          /> */}
          <img
-      className="h-full ml-5 w-[100px] dark:md:block" // Remove 'md:hidden' class here
+      className="h-full ml-5 w-[100px] dark:md:block"
       src={crioLogoMobile}
       alt="Crio.Do"
     />
-
-        {/* //  <img className="h-full md:hidden" src={crioLogoMobile} alt="Crio.Do" /> */}
         </Link>
       </div>
       <div className="group flex items-center">
@@ -62,7 +55,7 @@ const Header = () => {
           <IoIosSearch className="text-white text-xl" />
         </button>
       </div>
-      
+
     </div>
   );
 };
