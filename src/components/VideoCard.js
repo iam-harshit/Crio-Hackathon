@@ -8,6 +8,7 @@ import {
   BsThreeDotsVertical,
 } from "react-icons/bs";
 import { CgPlayPause } from "react-icons/cg";
+import video from "../assets/video-1.mp4";
 
 const formatDuration = (seconds) => {
   const hrs = Math.floor(seconds / 3600);
@@ -19,7 +20,7 @@ const formatDuration = (seconds) => {
   ).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
 };
 
-const BifurcationPlayer = ({ url, chapters }) => {
+const BifurcationPlayer = ({ videoData }) => {
   const [playing, setPlaying] = useState(false);
   const [played, setPlayed] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -90,29 +91,6 @@ const BifurcationPlayer = ({ url, chapters }) => {
     }
   };
 
-  //   const showPlayerControls = () => {
-  //     setShowControls(true);
-  //     if (hoverTimeout) {
-  //       clearTimeout(hoverTimeout);
-  //     }
-  //     const timeout = setTimeout(() => {
-  //       setShowControls(false);
-  //     }, 4000);
-  //     setHoverTimeout(timeout);
-  //   };
-
-  //   const hidePlayerControls = () => {
-  //     if (playing) {
-  //       if (hoverTimeout) {
-  //         clearTimeout(hoverTimeout);
-  //       }
-  //       const timeout = setTimeout(() => {
-  //         setShowControls(false);
-  //       }, 4000);
-  //       setHoverTimeout(timeout);
-  //     }
-  //   };
-
   const showPlayerControls = () => {
     setShowControls(true);
     if (hoverTimeout) {
@@ -133,7 +111,7 @@ const BifurcationPlayer = ({ url, chapters }) => {
     }, 10000);
     setPlayTimeout(timeout);
   };
-
+  
   return (
     <div>
     <div
@@ -145,7 +123,7 @@ const BifurcationPlayer = ({ url, chapters }) => {
     >
       <ReactPlayer
         ref={playerRef}
-        url={url}
+        url={video}
         playing={playing}
         volume={volume}
         onProgress={handleProgress}
@@ -179,18 +157,18 @@ const BifurcationPlayer = ({ url, chapters }) => {
             </div>
           </div>
           <div className="progress-bar-container">
-            {chapters.map((chapter, index) => (
+            {videoData[0]?.chapters?.map((chapter, index) => (
               <div
                 key={index}
                 className="progress-segment"
                 style={{
-                  width: `${(chapter.end - chapter.start) * 100}%`,
+                  width: `${((chapter.end / 1000) - (chapter.start / 1000)) * 1000}%`,
                   marginRight: `${
-                    index !== chapters.length - 1 ? "3px" : "0px"
+                    index !== chapter.length - 1 ? "3px" : "0px"
                   }`,
                   cursor: "pointer",
                 }}
-                onClick={() => seekToChapter(chapter.start)}
+                onClick={() => seekToChapter(chapter.start / 1000)}
                 onMouseOver={() => setTooltip({ ...tooltip, visible: true })}
                 onMouseMove={(e) => {
                   const progressBarWidth =
@@ -206,7 +184,7 @@ const BifurcationPlayer = ({ url, chapters }) => {
                     x: e.clientX,
                     y: e.clientY,
                     content: `${formatDuration(hoverTimeInSeconds)} - ${
-                      chapter.title
+                      chapter.headline
                     }`,
                   });
                 }}
@@ -216,12 +194,12 @@ const BifurcationPlayer = ({ url, chapters }) => {
                   className="played-progress"
                   style={{
                     width:
-                      played >= chapter.end
+                      played >= chapter.end / 1000
                         ? "100%"
-                        : played > chapter.start
+                        : played > chapter.start / 1000
                         ? `${
-                            ((played - chapter.start) /
-                              (chapter.end - chapter.start)) *
+                            ((played - chapter.start / 1000) /
+                              ((chapter.end / 1000) - (chapter.start / 1000))) *
                             100
                           }%`
                         : "0%",
