@@ -7,11 +7,9 @@ const SuggestionVideoCard = () => {
     <Link to="video">
       <div className="flex mb-3">
         <div className="relative h-24 lg:h-20 xl:h-24 w-40 min-w-[168px] lg:w-32 lg:min-w-[128px] xl:w-40 xl:min-w-[168px] rounded-xl bg-slate-800 overflow-hidden">
-          <img
-            className="h-full w-full object-cover"
-            src={video}
-            alt=""
-          />
+          <video width="320" height="240" controls>
+            <source src={video} type="video/mp4" />
+          </video>
           <p className="text-black">00:10</p>
         </div>
         <div className="flex flex-col ml-3 overflow-hidden">
