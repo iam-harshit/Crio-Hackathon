@@ -22,17 +22,17 @@ const Header = () => {
   };
 
   return (
-    <div className="sticky top-0 z-10 flex flex-row items-center justify-between h-14 px-4 md:px-5 bg-white dark:bg-black">
+    <div className="sticky top-0 z-10 flex flex-row items-center justify-between h-14 px-4 md:px-5 bg-white dark:bg-black" style={{ backgroundColor: 'black' }}>
       {loading && <Loader />}
 
       <div className="flex h-5 items-center">
         <Link to="/" className="flex h-7 items-center">
           <img
-            className="h-full ml-5 w-[100px] hidden dark:md:block"
+            className="h-full ml-5 w-[100px] dark:md:block"
             src={crioLogoMobile}
             alt="Crio.Do"
           />
-          <img className="h-full md:hidden" src={crioLogoMobile} alt="Crio.Do" />
+
         </Link>
       </div>
       <div className="group flex items-center">
@@ -56,7 +56,7 @@ const Header = () => {
           <IoIosSearch className="text-white text-xl" />
         </button>
       </div>
-      
+
     </div>
   );
 };
