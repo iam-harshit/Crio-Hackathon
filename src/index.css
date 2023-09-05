@@ -1,200 +1,272 @@
-.App {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-.chaptered-player-container {
-  position: relative;
-  width: 100vh;
-  height: 56vh;
-  border-radius: 15px;
-  overflow: hidden;
+#root {
+    height: 100vh;
 }
 
-.player {
-  width: 100%;
-  height: 100%;
-  border-radius: 15px;
-  box-shadow: 0 16px 20px rgba(0, 0, 0, 0.6);
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+        monospace;
 }
 
-.player-controls {
-  position: absolute;
-  width: 100%;
-  margin-right: 10px;
-  bottom: 0;
-  left: 0;
-  z-index: 1;
-  background: rgba(0, 0, 0, 0.2);
-  display: flex;
-  flex-direction: column;
+.load-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #fdba2c;
+}
+.bar {
+    content: "";
+    display: inline;
+    position: absolute;
+    width: 0;
+    height: 100%;
+    left: 50%;
+    text-align: center;
+}
+.bar:nth-child(1) {
+    background-color: #da4733;
+    animation: loading 3s linear infinite;
+}
+.bar:nth-child(2) {
+    background-color: #3b78e7;
+    animation: loading 3s linear 1s infinite;
+}
+.bar:nth-child(3) {
+    background-color: #fdba2c;
+    animation: loading 3s linear 2s infinite;
+}
+@keyframes loading {
+    from {
+        left: 50%;
+        width: 0;
+        z-index: 100;
+    }
+    33.3333% {
+        left: 0;
+        width: 100%;
+        z-index: 10;
+    }
+    to {
+        left: 0;
+        width: 100%;
+    }
 }
 
-.top-controls {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-right: 10px;
-  padding-top: 5px;
+.custom-h {
+    height: auto !important;
 }
-
-.play-pause-btn {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 18px;
-  cursor: pointer;
+@media screen and (min-width: 1024px) {
+    .custom-h {
+        height: 100vh !important;
+    }
 }
-
-.play-pause-icon {
-  font-size: 25px;
-}
-
-.volume-control {
-  padding-left: 10px;
-  padding-bottom: 10px;
-  padding-top: 5px;
-}
-
-.volume-icon {
-  font-size: 18px;
-  padding-right: 3px;
-  color: #fff;
-}
-
-.volume-slider {
-  width: 100px;
-  appearance: none;
-  background: rgba(255, 255, 255, 0.2);
-  height: 2px;
-  border-radius: 2px;
-  outline: none;
-  cursor: pointer;
-}
-
-.volume-slider::-webkit-slider-thumb {
-  appearance: none;
-  width: 15px;
-  height: 15px;
-  background: white;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.volume-slider::-moz-range-thumb {
-  width: 15px;
-  height: 15px;
-  background: white;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.bottom-controls {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-grow: 1;
-  padding: 10px;
-}
-
-.fullscreen-btn {
-  padding-right: 10px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: white;
-  font-size: 24px;
-}
-
-.volume-control {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.timestamp {
-  color: white;
-  margin-left: 10px;
-}
-
-.progress-bar-container {
-  display: flex;
-  align-items: center;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 5px;
-}
-
-.progress-segment {
-  height: 5px;
-  background: rgba(255, 255, 255, 0.2);
-  position: relative;
-  transition: height 0.3s;
-}
-
-.progress-segment:hover {
-  height: 7px;
-}
-
-.tooltip {
-  position: fixed;
-  transform: translateX(-50%) translateY(-120%);
-  padding: 5px 10px;
-  background: rgba(0, 0, 0, 0.2);
-  color: white;
-  border-radius: 4px;
-  white-space: nowrap;
-  pointer-events: none;
-  z-index: 1000;
-  font-size: 16px;
-}
-
-.played-progress {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  background: white;
-}
-
-.playback-speed-control {
-  position: relative;
-}
-
-.three-dots-button {
-  all: unset;
-  cursor: pointer;
-}
-
-.three-dots-icon{
-  font-size: 24px;
-  color: white;
-}
-
-.speed-options-dropdown {
-  position: absolute;
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  bottom: 100%;
-  transform: translateX(-10%) translateY(-30%);
-  right: 0;
-  z-index: 1000;
-}
-
-.speed-options-dropdown button {
-  display: block;
-  background: none;
-  border: none;
-  width: 100%;
-  text-align: left;
-  padding: 8px 16px;
-  cursor: pointer;
-}
-
-.speed-options-dropdown button.active {
-  font-weight: bold;
-}
+  
+  
+  
+  .chaptered-player-container {
+    position: relative;
+    width: 100vh;
+    height: 56vh;
+    border-radius: 15px;
+    overflow: hidden;
+  }
+  
+  .player {
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    box-shadow: 0 16px 20px rgba(0, 0, 0, 0.6);
+  }
+  
+  .player-controls {
+    position: absolute;
+    width: 100%;
+    margin-right: 10px;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .top-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 10px;
+    padding-top: 5px;
+  }
+  
+  .play-pause-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  
+  .play-pause-icon {
+    font-size: 25px;
+  }
+  
+  .volume-control {
+    padding-left: 10px;
+    padding-bottom: 10px;
+    padding-top: 5px;
+  }
+  
+  .volume-icon {
+    font-size: 18px;
+    padding-right: 3px;
+    color: #fff;
+  }
+  
+  .volume-slider {
+    width: 100px;
+    appearance: none;
+    background: rgba(255, 255, 255, 0.2);
+    height: 2px;
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+  }
+  
+  .volume-slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  .volume-slider::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  .bottom-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 1;
+    padding: 10px;
+  }
+  
+  .fullscreen-btn {
+    padding-right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-size: 24px;
+  }
+  
+  .volume-control {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .timestamp {
+    color: white;
+    margin-left: 10px;
+  }
+  
+  .progress-bar-container {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+  }
+  
+  .progress-segment {
+    height: 5px;
+    background: rgba(255, 255, 255, 0.2);
+    position: relative;
+    transition: height 0.3s;
+  }
+  
+  .progress-segment:hover {
+    height: 7px;
+  }
+  
+  .tooltip {
+    position: fixed;
+    transform: translateX(-50%) translateY(-120%);
+    padding: 5px 10px;
+    background: rgba(0, 0, 0, 0.2);
+    color: white;
+    border-radius: 4px;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 1000;
+    font-size: 16px;
+  }
+  
+  .played-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: white;
+  }
+  
+  .playback-speed-control {
+    position: relative;
+  }
+  
+  .three-dots-button {
+    all: unset;
+    cursor: pointer;
+  }
+  
+  .three-dots-icon{
+    font-size: 24px;
+    color: white;
+  }
+  
+  .speed-options-dropdown {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    bottom: 100%;
+    transform: translateX(-10%) translateY(-30%);
+    right: 0;
+    z-index: 1000;
+  }
+  
+  .speed-options-dropdown button {
+    display: block;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    padding: 8px 16px;
+    cursor: pointer;
+  }
+  
+  .speed-options-dropdown button.active {
+    font-weight: bold;
+  }
+  

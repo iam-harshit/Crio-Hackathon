@@ -135,6 +135,7 @@ const BifurcationPlayer = ({ url, chapters }) => {
   };
 
   return (
+    <div>
     <div
       className="chaptered-player-container"
       ref={playerContainerRef}
@@ -290,6 +291,8 @@ const BifurcationPlayer = ({ url, chapters }) => {
         </div>
       )}
     </div>
+    </div>
+    
   );
 };
 
