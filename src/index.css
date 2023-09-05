@@ -1,92 +1,200 @@
-.App{
+.App {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: 100vh;
 }
 
 .chaptered-player-container {
   position: relative;
-  border-radius: 10px;
+  width: 100vh;
+  height: 56vh;
+  border-radius: 15px;
+  overflow: hidden;
 }
 
-.player{
-  box-shadow: 0 16px 20px rgba(0, 0, 0, 0.1);
+.player {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  box-shadow: 0 16px 20px rgba(0, 0, 0, 0.6);
 }
 
 .player-controls {
   position: absolute;
-  bottom: 10px;
-  left: 10px;
-  width: 95%;
+  width: 100%;
+  margin-right: 10px;
+  bottom: 0;
+  left: 0;
   z-index: 1;
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+}
+
+.top-controls {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding-right: 10px;
+  padding-top: 5px;
 }
 
 .play-pause-btn {
-  margin-right: 10px;
-  padding: 5px 10px;
-  background: rgba(0, 0, 0, 0.7);
+  background: none;
   border: none;
-  border-radius: 5px;
   color: white;
+  font-size: 18px;
   cursor: pointer;
-  transition: opacity 0.2s;
-  outline: none;
 }
 
-.play-pause-btn:hover {
-  opacity: 0.85;
+.play-pause-icon {
+  font-size: 25px;
+}
+
+.volume-control {
+  padding-left: 10px;
+  padding-bottom: 10px;
+  padding-top: 5px;
+}
+
+.volume-icon {
+  font-size: 18px;
+  padding-right: 3px;
+  color: #fff;
+}
+
+.volume-slider {
+  width: 100px;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.2);
+  height: 2px;
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.bottom-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 1;
+  padding: 10px;
+}
+
+.fullscreen-btn {
+  padding-right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-size: 24px;
+}
+
+.volume-control {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.timestamp {
+  color: white;
+  margin-left: 10px;
 }
 
 .progress-bar-container {
   display: flex;
-  flex: 1;
-  margin-left: 10px;
-  position: relative;
-  height: 6px;
-  background: #ddd;
-  border-radius: 3px;
-  overflow: hidden;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
 }
 
 .progress-segment {
-  height: 100%;
-  background: #ddd; /* Segment background color */
-  margin-right: 2px; /* Gap between segments */
+  height: 5px;
+  background: rgba(255, 255, 255, 0.2);
   position: relative;
+  transition: height 0.3s;
+}
+
+.progress-segment:hover {
+  height: 7px;
+}
+
+.tooltip {
+  position: fixed;
+  transform: translateX(-50%) translateY(-120%);
+  padding: 5px 10px;
+  background: rgba(0, 0, 0, 0.2);
+  color: white;
+  border-radius: 4px;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 1000;
+  font-size: 16px;
 }
 
 .played-progress {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
   height: 100%;
-  background: #007BFF;
+  background: white;
 }
 
-.chapter-marker {
-  position: absolute;
-  top: 0;
-  height: 100%;
-  width: 6px;
-  background: linear-gradient(90deg, #ddd 1px, #f00 2px, #f00 4px, #ddd 5px);
-  margin-left: 1px;
-  margin-right: 1px;
+.playback-speed-control {
+  position: relative;
+}
+
+.three-dots-button {
+  all: unset;
   cursor: pointer;
-  z-index: 1;
 }
 
-.chapter-marker::before {
-  content: ""; 
+.three-dots-icon{
+  font-size: 24px;
+  color: white;
+}
+
+.speed-options-dropdown {
   position: absolute;
-  top: 0;
-  left: -2px; /* Move it 2 pixels to the left */
-  height: 100%;
-  width: 2px; 
-  background: #ddd; /* The background color of the progress bar to simulate a gap */
-  z-index: -1; /* Make sure it's behind the main chapter marker */
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  bottom: 100%;
+  transform: translateX(-10%) translateY(-30%);
+  right: 0;
+  z-index: 1000;
 }
 
+.speed-options-dropdown button {
+  display: block;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.speed-options-dropdown button.active {
+  font-weight: bold;
+}
