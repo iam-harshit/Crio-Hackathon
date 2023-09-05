@@ -3,8 +3,8 @@ import SuggestionVideoCard from "./SuggestionVideoCard";
 import VideoCard from "./VideoCard";
 
 const VideoDetails = ({ url, chapters }) => {
-
   return (
+
     <div className="flex justify-center flex-row h-full bg-white">
       <div className="w-full max-w-[1280px] flex flex-col lg:flex-row">
         <div className="flex flex-col lg:w-[calc(100%-350px)] xl:w-[calc(100%-400px)] px-4 py-3 lg:py-6 overflow-y-auto">
