@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const VideoDescription = () => {
   return (
-    <div className="bg-gray-200 p-2 sm:p-4 md:p-6 lg:p-8 xl:p-10 rounded-xl">
+    <div className="bg-gray-200 p-2 sm:p-4 md:p-6 lg:p-8 xl:p-10 rounded-xl video-description-container">
       <div className="text-black font-bold text-xs sm:text-sm md:text-base lg:text-xl line-clamp-2">
         Hello, this is a sample video
       </div>
