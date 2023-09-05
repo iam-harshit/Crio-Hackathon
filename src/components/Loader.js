@@ -1,12 +1,14 @@
 const Loader = () => {
     return (
-        <div className="load-bar">
-            <div className="bar"></div>
-            <div className="bar"></div>
-            <div className="bar"></div>
-        </div>
-
+      <div class="spinner">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     );
-}
-
-export default Loader;
+  };
+  
+  export default Loader;
+  
