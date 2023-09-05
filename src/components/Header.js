@@ -1,29 +1,12 @@
-import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 import crioLogoMobile from "../assets/crio-logo.png";
 import { IoIosSearch } from "react-icons/io";
-import Loader from "./Loader";
-import { Context } from "../context/contextApi";
 
 const Header = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-
-  const { loading } = useContext(Context);
-
-  const navigate = useNavigate();
-
-  const searchQueryHandler = (event) => {
-    if (
-      (event?.key === "Enter" || event === "searchButton") &&
-      searchQuery?.length > 0
-    ) {
-      navigate(`/searchResult/${searchQuery}`);
-    }
-  };
 
   return (
-    <div className="sticky top-0 z-10 flex flex-row items-center justify-between h-14 px-4 md:px-5 bg-white dark:bg-black" style={{backgroundColor: 'black'}}>
-      {loading && <Loader />}
+    <div className="sticky top-0 z-10 pb-2 pt-2 flex flex-row items-center justify-between h-14 px-4 md:px-5 bg-white dark:bg-[#212529]" style={{backgroundColor: '#212529'}}>
 
       <div className="flex h-5 items-center">
         <Link to="/" className="flex h-7 items-center">
@@ -42,16 +25,11 @@ const Header = () => {
           <input
             type="text"
             className="bg-transparent outline-none text-white pr-5 pl-5 md:pl-0 w-44 md:group-focus-within:pl-0 md:w-64 lg:w-[500px]"
-            onChange={(e) => setSearchQuery(e.target.value)}
-            onKeyUp={searchQueryHandler}
             placeholder="Search"
-            value={searchQuery}
           />
         </div>
         <button
-          className="w-[40px] md:w-[60px] h-8 md:h-10 flex items-center justify-center border border-l-0 border-[#303030] rounded-r-3xl bg-white/[0.1]"
-          onClick={() => searchQueryHandler("searchButton")}
-        >
+          className="w-[40px] md:w-[60px] h-8 md:h-10 flex items-center justify-center border border-l-0 border-[#303030] rounded-r-3xl bg-white/[0.1]">
           <IoIosSearch className="text-white text-xl" />
         </button>
       </div>

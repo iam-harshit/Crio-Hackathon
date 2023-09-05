@@ -5,8 +5,7 @@ export const Context = createContext();
 
 export const AppContext = (props) => {
   const [videos, setVideos] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [searchResults, setSearchResults] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchVideoData();
@@ -30,8 +29,6 @@ export const AppContext = (props) => {
         setLoading,
         videos,
         setVideos,
-        searchResults,
-        setSearchResults,
       }}
     >
       {props.children}
